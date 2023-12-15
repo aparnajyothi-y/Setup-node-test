@@ -1,7 +1,7 @@
 name: cache
 
 on:
-  workflow_dispatch:https://github.com/aparnajyothi-y/Setup-node-test/settings
+  workflow_dispatch:
 
 jobs:
   node-npm-depencies-caching:
