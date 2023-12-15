@@ -13,16 +13,16 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
         
     steps:
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v3
       - name: Setup Node
-        uses: ./
+        uses: actions/setup-node@v3
         with:
            node-version: 18
            cache: 'npm'
            cache-dependency-path: 'package.json'
            check-latest: true
       - name: Install dependencies
-        run: npm install
+        run: npm install express@latest axios@latest
           
   node-pnpm-depencies-caching:
     name: local cache npm (Node ${{ matrix.node-version}}, ${{ matrix.os }})
@@ -32,15 +32,12 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
-      - uses: actions/cache@v3
-      - name: Setup Node
-        uses: ./
-        
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3 
         with:
-          node-version: 18
-          cache: 'npm'
+          path: '~/.npm'
           key: ${{ runner.os }}-${{ matrix.node-version }}-9.8.0-npmcache-${{ hashFiles('**/package-lock.json') }}
-          check-latest: true
+          
       - name: Install dependencies
-        run: npm install
+        run: npm install express@latest axios@latest
      
