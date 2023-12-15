@@ -1,0 +1,51 @@
+name: cache
+
+on:
+  workflow_dispatch:https://github.com/aparnajyothi-y/Setup-node-test/settings
+
+jobs:
+  node-npm-depencies-caching:
+    name: Setup-node npm (Node ${{ matrix.node-version}}, ${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node-version: [12, 14, 16]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Clean global cache
+        run: npm cache clean --force
+      - name: Setup Node
+        uses: ./
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm install
+      - name: Verify node and npm
+        run: __tests__/verify-node.sh "${{ matrix.node-version }}"
+        shell: bash
+
+  node-pnpm-depencies-caching:
+    name: Setup-node npm (Node ${{ matrix.node-version}}, ${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node-version: [12, 14, 16]
+    steps:
+      - uses: actions/cache@v4
+      - name: Clean global cache
+        run: npm cache clean --force
+      - name: Setup Node
+        uses: ./
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm install
+      - name: Verify node and npm
+        run: __tests__/verify-node.sh "${{ matrix.node-version }}"
+        shell: bash
