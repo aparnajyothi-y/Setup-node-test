@@ -19,7 +19,7 @@ jobs:
         with:
            node-version: 18
            cache: 'npm'
-           cache-dependency-path: 'package.json'
+           cache-dependency-path: 'README.md'
            check-latest: true
       - name: Install dependencies
         run: npm install express@latest axios@latest
@@ -36,7 +36,7 @@ jobs:
       - uses: actions/cache@v3 
         with:
           path: '~/.npm'
-          key: ${{ runner.os }}-${{ matrix.node-version }}-9.8.0-npmcache-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-18-9.8.0-npmcache-${{ hashFiles('**/README.md') }}
           
       - name: Install dependencies
         run: npm install express@latest axios@latest
