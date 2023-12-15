@@ -13,7 +13,12 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
         node-version: [12, 14, 16]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: yarn
+          cache-dependency-path: 'yarn.lock'
+          check-latest: true@v4
       - name: Clean global cache
         run: npm cache clean --force
       - name: Setup Node
@@ -36,7 +41,7 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
         node-version: [12, 14, 16]
     steps:
-      - uses: actions/cache@v4
+      - uses: actions/cache@v3
       - name: Clean global cache
         run: npm cache clean --force
       - name: Setup Node
