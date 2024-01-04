@@ -1,0 +1,86 @@
+
+name: Tests
+
+on:
+  workflow_dispatch :
+    
+jobs:    
+
+  lint_and_docs:
+    name: "Lint and Docs"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.0.0
+      - name: Check for node
+        run: |
+          which node
+          node --version
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      - name: Set up dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -qy clang-format npm libunwind-dev liblz4-dev pkg-config
+      - name: Install Python dependencies
+        run: |
+          python3 -m pip install -r requirements-extra.txt
+      - name: Install Package
+        run: |
+          python3 -m pip install -e .
+      - name: Check for node again
+        run: |
+          which node
+          node --version
+      - name: Lint sources
+        run: |
+          make lint
+      - name: Build docs
+        run: |
+          towncrier build --version 99.99 --name memray --keep
+          make docs
+
+  test3:
+  
+    name: "Lint and Docs test"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16.0.0
+      - name: Check for node
+        run: |
+          which node
+          node --version
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      - name: Set up dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -qy clang-format npm libunwind-dev liblz4-dev pkg-config
+      - name: Install Python dependencies
+        run: |
+          python3 -m pip install -r requirements-extra.txt
+      - name: Install Package
+        run: |
+          python3 -m pip install -e .
+      - name: Check for node again
+        run: |
+          which node
+          node --version
+      - name: Lint sources
+        run: |
+          make lint
+      - name: Build docs
+        run: |
+          towncrier build --version 99.99 --name memray --keep
+          make docs
