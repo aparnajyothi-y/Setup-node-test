@@ -34,8 +34,6 @@ jobs:
         run: |
           python3 -m pip install -e .
       - name: Check for node again
-     
-      - name: Check for node again
         run: |
           which node
           node --version
