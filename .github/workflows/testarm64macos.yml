@@ -20,6 +20,8 @@ jobs :
             arch: arm64
     runs-on: ${{ matrix.os }}
     steps:
+      - name: Check runner architecture
+        run: uname -m
       - shell: pwsh
         run: echo "target=${{ matrix.platform }}-${{ matrix.arch }}" >> $env:GITHUB_ENV
       - uses: actions/checkout@v4
