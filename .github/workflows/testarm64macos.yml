@@ -1,0 +1,30 @@
+
+name: Tests
+
+on:
+  workflow_dispatch :
+
+
+jobs :
+
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            platform: linux
+            arch: arm64
+          - os: macos-13
+            platform: darwin
+            arch: arm64
+    runs-on: ${{ matrix.os }}
+    steps:
+      - shell: pwsh
+        run: echo "target=${{ matrix.platform }}-${{ matrix.arch }}" >> $env:GITHUB_ENV
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          architecture: ${{ matrix.arch }}
+          cache: 'npm'
