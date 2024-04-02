@@ -1,5 +1,5 @@
 
-name: Tests
+name: Tests macos
 
 on:
   workflow_dispatch :
