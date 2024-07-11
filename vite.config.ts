@@ -1,6 +1,5 @@
 // Plugins
-import Vue from '@vitejs/plugin-vue'
-import Vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
+import Vuetify from 'vite-plugin-vuetify'
 
 // Utilities
 import { fileURLToPath, URL } from 'node:url'
@@ -9,17 +8,15 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [
-    Vue({
-      template: { transformAssetUrls },
-    }),
-    // https://github.com/vuetifyjs/vuetify-loader/tree/next/packages/vite-plugin
+    // Removed Vue plugin
+    // Vue({
+    //   template: { transformAssetUrls },
+    // }),
     Vuetify(),
-    // Components(), // Removed this line
   ],
   build: {
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
-      
     },
     rollupOptions: {
       external: ['vue'],
