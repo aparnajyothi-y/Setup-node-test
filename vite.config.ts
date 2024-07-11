@@ -8,15 +8,13 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [
-    // Removed Vue plugin
-    // Vue({
-    //   template: { transformAssetUrls },
-    // }),
     Vuetify(),
   ],
   build: {
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
+      name: 'MyLibrary', // Add this line
+      formats: ['umd', 'iife'], // Ensure the formats are specified
     },
     rollupOptions: {
       external: ['vue'],
