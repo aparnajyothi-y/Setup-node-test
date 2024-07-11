@@ -8,8 +8,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Check permissions
-        run: ls -l /home/gh-runner/actions-runner/_work/_tool/node/
 
       - name: Set up Node.js 16.20.2
         uses: actions/setup-node@v3
@@ -19,4 +17,4 @@ jobs:
       - name: Set up Node.js 14 (or any other version)
         uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 20
