@@ -1,6 +1,11 @@
 {
   "name": "setup-node-test",
   "version": "1.0.0",
+
+   "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baobabsoluciones/mango-ui.git"
+  },
   "scripts": {
     "build": "vite build",
     "start": "vite"
