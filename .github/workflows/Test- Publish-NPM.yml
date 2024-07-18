@@ -13,6 +13,11 @@ jobs:
       with:
         node-version: 20
         registry-url: 'https://npm.pkg.github.com'
+    - name: Configure .npmrc
+      run: |
+          echo "@aparnajyothi-y:registry=https://npm.pkg.github.com" > ~/.npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GIT_TOKEN }}" >> ~/.npmrc
+
     - name: Install dependencies
       run: |
         npm install 
@@ -31,6 +36,12 @@ jobs:
       with:
         node-version: 21
         registry-url: 'https://npm.pkg.github.com'
+
+    - name: Configure .npmrc
+      run: |
+          echo "@aparnajyothi-y:registry=https://npm.pkg.github.com" > ~/.npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GIT_TOKEN }}" >> ~/.npmrc
+
     - name: Install dependencies
       run: |
         npm install 
@@ -49,6 +60,12 @@ jobs:
       with:
         node-version: 18
         registry-url: 'https://npm.pkg.github.com'
+
+    - name: Configure .npmrc
+      run: |
+          echo "@aparnajyothi-y:registry=https://npm.pkg.github.com" > ~/.npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GIT_TOKEN }}" >> ~/.npmrc
+
     - name: Install dependencies
       run: |
         npm install 
