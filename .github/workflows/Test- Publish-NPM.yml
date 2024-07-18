@@ -4,28 +4,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  v4-20:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 20
-        registry-url: 'https://npm.pkg.github.com'
-    - name: Configure .npmrc
-      run: |
-          echo "@aparnajyothi-y:registry=https://npm.pkg.github.com" > ~/.npmrc
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GIT_TOKEN }}" >> ~/.npmrc
-
-    - name: Install dependencies
-      run: |
-        npm install 
-        npm run build
-    - name: Publish
-      run: npm publish
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.GIT_TOKEN }}
 
   v4-21:
     runs-on: ubuntu-latest
@@ -54,30 +32,6 @@ jobs:
       env:
         NODE_AUTH_TOKEN: ${{ secrets.GIT_TOKEN }}
 
-  v4-18:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 18
-        registry-url: 'https://npm.pkg.github.com'
 
-    - name: Configure .npmrc
-      run: |
-          echo "@aparnajyothi-y:registry=https://npm.pkg.github.com" > ~/.npmrc
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GIT_TOKEN }}" >> ~/.npmrc
-    - name: Update Version
-      run: |
-        npm version patch
-    - name: Install dependencies
-      run: |
-        npm install 
-        npm run build
-    - name: Publish
-      run: npm publish
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.GIT_TOKEN }}
 
 
