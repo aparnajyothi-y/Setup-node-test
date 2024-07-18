@@ -19,9 +19,7 @@ jobs:
       run: |
           echo "@aparnajyothi-y:registry=https://npm.pkg.github.com" > ~/.npmrc
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GIT_TOKEN }}" >> ~/.npmrc
-    - name: Update Version
-      run: |
-        npm version patch
+    
 
     - name: Install dependencies
       run: |
