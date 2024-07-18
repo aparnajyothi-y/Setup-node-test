@@ -17,7 +17,7 @@ jobs:
 
     - name: Configure .npmrc
       run: |
-          echo "@aparnajyothi-y:registry=https://npm.pkg.github.com" > ~/.npmrc
+          echo "@test-publish:registry=https://npm.pkg.github.com" > ~/.npmrc
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GIT_TOKEN }}" >> ~/.npmrc
     
 
