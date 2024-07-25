@@ -1,4 +1,4 @@
-name: cache
+name: cache test
 
 on:
   workflow_dispatch:
@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: aparnajyothi-y/setup-node@PR#843-test
         with:
            node-version: 18
            cache: 'npm'
@@ -23,21 +23,26 @@ jobs:
            check-latest: true
       - name: Install dependencies
         run: npm install express@latest axios@latest
-          
+
   node-pnpm-depencies-caching:
-    name: local cache npm (Node ${{ matrix.node-version}}, ${{ matrix.os }})
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/cache@v3 
-        with:
-          path: '~/.npm'
-          key: ${{ runner.os }}-18-9.8.0-npmcache-${{ hashFiles('**/README.md') }}
+      name: Setup-node pnpm (Node ${{ matrix.node-version}}, ${{ matrix.os }})
+      runs-on: ${{ matrix.os }}
+      strategy:
+        fail-fast: false
+        matrix:
+          os: [ubuntu-latest, windows-latest, macos-latest]
           
-      - name: Install dependencies
-        run: npm install express@latest axios@latest
+      steps:
+        - uses: actions/checkout@v3
+        - name: Setup Node
+          uses: aparnajyothi-y/setup-node@PR#843-test
+          with:
+             node-version: 18
+             cache: 'pnpm'
+             cache-dependency-path: 'README.md'
+             check-latest: true
+        - name: Install dependencies
+          run: npm install express@latest axios@latest
+          
+  
      
