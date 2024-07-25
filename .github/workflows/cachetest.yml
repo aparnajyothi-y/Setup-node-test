@@ -22,27 +22,4 @@ jobs:
            cache-dependency-path: 'README.md'
            check-latest: true
       - name: Install dependencies
-        run: npm install express@latest axios@latest
-
-  node-pnpm-depencies-caching:
-      name: Setup-node pnpm (Node ${{ matrix.node-version}}, ${{ matrix.os }})
-      runs-on: ${{ matrix.os }}
-      strategy:
-        fail-fast: false
-        matrix:
-          os: [ubuntu-latest, windows-latest, macos-latest]
-          
-      steps:
-        - uses: actions/checkout@v3
-        - name: Setup Node
-          uses: aparnajyothi-y/setup-node@PR#843-test
-          with:
-             node-version: 18
-             cache: 'pnpm'
-             cache-dependency-path: 'README.md'
-             check-latest: true
-        - name: Install dependencies
-          run: npm install express@latest axios@latest
-          
-  
-     
+        run: npm install express@latest axios@latest   
