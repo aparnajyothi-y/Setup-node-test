@@ -5,7 +5,7 @@ on:
 
 jobs:
 
-  v4-18:
+  test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
