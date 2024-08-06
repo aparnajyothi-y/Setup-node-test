@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Setup Node
-        uses: aparnajyothi-y/setup-node@PR#843-test
+        uses: aparnajyothi-y/setup-node@main
         with:
            node-version: 18
            cache: 'npm'
